@@ -1,4 +1,4 @@
 # Prerequisite
-* Python 3.7
+* Java 11
 
 # Usage
