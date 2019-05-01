@@ -1,0 +1,62 @@
+input.invalid, textarea.invalid, select.invalid, checkbox.invalid {
+	background-color: #FF0000;
+	color:#FFFF00;
+}
+input.invalid:focus, textarea.invalid:focus, select.invalid:focus, checkbox.invalid:focus {
+	background-color: #FF0000;
+	color:#FFFF00;
+}
+legend {
+	color: #000000;
+	font-weight: bold;
+}
+.boxes {
+	border: none;
+}
+/*------------------- ERROR DISPLAY ---------------*/
+div#errorDisplay {
+	background-color: #FF0000;
+	display: none;
+	padding:14px;
+	margin:14px;
+	color:#FFFF00;
+	font-weight: bold;
+}
+div#errorDisplay ul {
+	list-style-type: disc;
+	margin-top:0px;
+	margin-bottom:0px;
+}
+.Alert {
+	position: relative;
+	float: left;
+	display: inline-table;
+	width: 100%;
+	max-width: 916px;
+	text-align:center;
+	padding: 14px;
+	border:none;
+	min-height: 1px;
+	background-color: #FF0000;
+	margin: 0px 14px 14px 14px;
+	font-size: 16px; 
+	line-height: 32px;
+	font-weight: bold;
+	color:#FFFF00;
+}
+.Alert i {
+	float: left;
+	padding:0px 0px 0px 0px;
+}
+.Alert span {
+	float: left;
+	padding:0px 0px 0px 0px;
+}
+.Napaka {
+	background-color: #FF0000;
+	color:#FFFF00;
+}
+.Potrditev {
+	background-color: #228b22; /* FOREST GREEN */
+	color:#FFFFFF;
+}
