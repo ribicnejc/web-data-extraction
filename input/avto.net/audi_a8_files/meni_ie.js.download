@@ -1,3 +1,0 @@
-function setMobileMenuAction(){navHover=function(){var lis=document.getElementById("hmeni").getElementsByTagName("LI");for(var i=0;i<lis.length;i++){lis[i].onmouseover=function(){this.className+=" iehover";}
-lis[i].onmouseout=function(){this.className=this.className.replace(new RegExp(" iehover\\b"),"");}}}
-if(window.attachEvent)window.attachEvent("onload",navHover);$(function(){var pull=$('#pull');menu=$('#hmeni.nav > ul');menuHeight=menu.height();$(pull).on('click',function(e){e.preventDefault();menu.slideToggle();});$(window).resize(function(){var w=$(window).width();if(w>767&&menu.is(':hidden')){menu.removeAttr('style');}});$('#hmeni.nav > ul > li > a > span > i').click(function(e){e.preventDefault();$(this).parent().parent().next("ul").slideToggle();});});}
