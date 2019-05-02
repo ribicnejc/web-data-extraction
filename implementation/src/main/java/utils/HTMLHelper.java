@@ -1,7 +1,5 @@
 package utils;
 
-import javafx.scene.shape.Path;
-
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
