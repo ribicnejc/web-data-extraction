@@ -1,8 +1,14 @@
 package regex;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import objects.Overstock;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import utils.HTMLHelper;
+
+import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class RegEx {
 
@@ -29,12 +35,36 @@ public class RegEx {
                 path = "input/overstock.com/jewelry02.html";
                 break;
         }
-        Document document = Jsoup.parse(HTMLHelper.getHTMLString(path));
+        String htmlFile = HTMLHelper.getHTMLString(path);
+        Matcher titleMatcher = getMatcher("<a href=(.*?)><b>([a-zA-Z0-9-\\.( ')]+)<\\/b><\\/a><br>", htmlFile);
+        Matcher contentMatcher = getMatcher("<span class=\\\"normal\\\">([a-zA-Z \r\t\n.,0-9\\-'()]+)", htmlFile);
+        Matcher listPriceMatcher = getMatcher("<td align=\"left\" nowrap=\"nowrap\"><s>([$0-9.,]+)<\\/s>", htmlFile);
+        Matcher priceMathcer = getMatcher("<span class=\"bigred\"><b>([$0-9.,]+)<\\/b>", htmlFile);
+        Matcher savingMatcher = getMatcher("<td align=\"left\" nowrap=\"nowrap\"><span class=\"littleorange\">([$0-9.,]+)", htmlFile);
+        Matcher savingPercentMatcher = getMatcher("<td align=\"left\" nowrap=\"nowrap\"><span class=\"littleorange\">([$0-9., ]+)([()0-9%]+)", htmlFile);
 
-        return null;
+        int i = 0;
+        ArrayList<Overstock> overstocks = new ArrayList<>();
+        while (titleMatcher.find() && contentMatcher.find() && listPriceMatcher.find() && priceMathcer.find() && savingMatcher.find() && savingPercentMatcher.find()) {
+            Overstock overstock = new Overstock(listPriceMatcher.group(1),
+                    priceMathcer.group(1),
+                    savingMatcher.group(1),
+                    savingPercentMatcher.group(2),
+                    titleMatcher.group(2),
+                    contentMatcher.group(1) + "\nClick here to purchase.");
+            overstocks.add(overstock);
+        }
+
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(overstocks);
     }
 
     public static String parsePageRtvSlo() throws Exception{
         return HTMLHelper.getHTMLString("input/rtvslo.si/Audi A6 50 TDI quattro_ nemir v premijskem razredu - RTVSLO.si.html");
+    }
+
+    private static Matcher getMatcher(String regex, String content) {
+        Pattern pattern = Pattern.compile(regex, Pattern.DOTALL);
+        return pattern.matcher(content);
     }
 }
