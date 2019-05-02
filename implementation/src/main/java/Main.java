@@ -1,7 +1,6 @@
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import regex.RegEx;
-import sun.plugin.dom.html.HTMLObjectElement;
 import utils.HTMLHelper;
 
 public class Main {
