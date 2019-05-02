@@ -5,9 +5,15 @@ public class Main {
 
         System.out.println("################## REGEX ################");
         System.out.println("############ Parsing overstock ###########");
+
+        System.out.println(RegEx.parsePageOverstock(0));
         System.out.println(RegEx.parsePageOverstock(1));
 
         System.out.println("############ ################# ###########");
+        System.out.println("############ Parsing rtvslo ###########");
+
+        System.out.println(RegEx.parsePageRtvSlo(0));
+        System.out.println(RegEx.parsePageRtvSlo(1));
 
         System.out.println("##########################################");
     }
