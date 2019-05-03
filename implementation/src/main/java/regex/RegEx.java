@@ -1,6 +1,7 @@
 package regex;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import objects.Avtonet;
 import objects.Overstock;
 import objects.Rtvslo;
 import org.jsoup.Jsoup;
@@ -13,20 +14,38 @@ import java.util.regex.Pattern;
 
 public class RegEx {
 
-    public static String parsePageAvtoNet(int pageIndex) throws Exception{
-//        String path = "";
-//        switch (pageIndex) {
-//            case 0:
-//                path = "input/avto.net/audi_a8.html";
-//                break;
-//            case 1:
-//                path = "input/avto.net/ford_mustang.html";
-//                break;
-//        }
-        return HTMLHelper.getHTMLString("input/avto.net/audi_a8.html");
+    public static String parsePageAvtoNet(int pageIndex) throws Exception {
+        String path = "";
+        switch (pageIndex) {
+            case 0:
+                path = "input/avto.net/Mazda RX-7.html";
+                break;
+            case 1:
+                path = "input/avto.net/Toyota GT 86.html";
+                break;
+        }
+        String htmlFile = HTMLHelper.getHTMLString(path);
+        Matcher titleMatcher = getMatcher("<h1>([a-zA-Z \\-&;0-9 <>\\/]+)<", htmlFile);
+        Matcher sellerMatcher = getMatcher("OglasMenuBox RoundedBottom ShadowBtm([\\n\\t\\r< a-z=\"0-9.\\/A-Z_\\-\\:\\;>!&Č]*)", htmlFile);
+        Matcher contentMatcher = getMatcher("<div class=\"ContentBox ContentBox640 Rounded ShadowBtm\">([ \\n<!\\-a-zA-Z>0-9=\":\\/ž\\r\\t&;,()č.š+\\*\\'\\_Č]+)<!-", htmlFile);
+        Matcher priceMathcer = getMatcher("OglasDataCenaTOP\"([a-zA-ZčČ \\n\\r\\t\" \\-:;= !0-9\\,\\.€$>]+)", htmlFile);
+
+        titleMatcher.find();
+        contentMatcher.find();
+        contentMatcher.find();
+        sellerMatcher.find();
+        priceMathcer.find();
+
+        Avtonet avtonet = new Avtonet(titleMatcher.group(1),
+                priceMathcer.group(1),
+                sellerMatcher.group(1),
+                contentMatcher.group(1));
+
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(avtonet);
     }
 
-    public static String parsePageOverstock(int pageIndex) throws Exception{
+    public static String parsePageOverstock(int pageIndex) throws Exception {
         String path = "";
         switch (pageIndex) {
             case 0:
@@ -59,7 +78,7 @@ public class RegEx {
         return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(overstocks);
     }
 
-    public static String parsePageRtvSlo(int pageIndex) throws Exception{
+    public static String parsePageRtvSlo(int pageIndex) throws Exception {
         String path = "";
         switch (pageIndex) {
             case 0:
