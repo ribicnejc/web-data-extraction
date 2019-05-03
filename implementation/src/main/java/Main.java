@@ -15,6 +15,13 @@ public class Main {
         System.out.println(RegEx.parsePageRtvSlo(0));
         System.out.println(RegEx.parsePageRtvSlo(1));
 
+        System.out.println("############ ################# ###########");
+        System.out.println("############ Parsing avtonet ###########");
+
+        System.out.println(RegEx.parsePageAvtoNet(0));
+        System.out.println(RegEx.parsePageAvtoNet(1));
+//        https://regex101.com/
+
         System.out.println("##########################################");
     }
 
