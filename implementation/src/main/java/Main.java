@@ -20,7 +20,6 @@ public class Main {
 
         System.out.println(RegEx.parsePageAvtoNet(0));
         System.out.println(RegEx.parsePageAvtoNet(1));
-//        https://regex101.com/
 
         System.out.println("##########################################");
     }
