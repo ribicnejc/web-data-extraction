@@ -1,4 +1,4 @@
-package objects;
+package regex;
 
 public class Rtvslo {
     public String Author;
