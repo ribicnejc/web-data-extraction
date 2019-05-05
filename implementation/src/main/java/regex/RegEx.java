@@ -36,10 +36,10 @@ public class RegEx {
     public static String parsePageAvtoNet(int pageIndex) throws Exception {
         String path = "";
         switch (pageIndex) {
-            case 1:
+            case 0:
                 path = "input/avto.net/Mazda RX-7.html";
                 break;
-            case 0:
+            case 1:
                 path = "input/avto.net/Toyota GT 86.html";
                 break;
         }
@@ -53,23 +53,45 @@ public class RegEx {
         Matcher contacsMatcher = getMatcher("<div class=\"OglasMenuBox Bold OglasMenuBoxPhone\">([\\r\\t\\n])(.*)", htmlFile);
         ArrayList<String> contacts = new ArrayList<>();
         while(contacsMatcher.find()) {
-            String contact = contacsMatcher.group(2).split("<")[0].replaceAll("&nbsp;", " ");
-            contacts.add(contact);
-            System.out.println(contact);
+            String[] contacts2 = contacsMatcher.group(2).split("<div class=\"OglasMenuBoxLine\"></div>");
+            for (String elt : contacts2) {
+                String contact;
+                if (elt.substring(0, 1).equals("\n")) {
+                    if (elt.contains("ONLINE")) {
+                        contact = elt.split("\r\n")[0];
+                    } else
+                        contact = elt.split("<p class")[0];
+                } else {
+                    if (elt.contains("\n" +
+                            "\t\t\t\t") && !elt.contains("http"))
+                        contact = elt.split("\r\n\t\t\t\t")[1].split("<p class")[0];
+                    else continue;
+                }
+                contacts.add(contact);
+            }
         }
 
 
         Matcher priceMathcer = getMatcher("OglasDataCenaTOP\"([a-zA-ZčČ \\n\\r\\t\" \\-:;= !0-9\\,\\.€$>]+)", htmlFile);
         priceMathcer.find();
         String price = priceMathcer.group(1).replaceAll("style=\"font-size: 18px;\">", "");
-        Matcher contentMatcherKey = getMatcher("<div class=\"OglasDataLeft\">(.*)<\\/div>", htmlFile);
-        Matcher contentMatcherValue = getMatcher("<div class=\"OglasDataRight\">(.*)<\\/div>", htmlFile);
+        Matcher contentMatcherKey = getMatcher("<div class=\"OglasDataLeft\">(.*)</div>", htmlFile);
+        Matcher contentMatcherValue = getMatcher("<div class=\"OglasDataRight\">(.*)</div>", htmlFile);
 
         HashMap<String, String> data =  new HashMap<>();
         while (contentMatcherKey.find() && contentMatcherValue.find()) {
-            String key = contentMatcherKey.group(1).split("</div>")[0];
-            String value = contentMatcherValue.group(1).split("</div>")[0];
-            data.put(key, value);
+
+            String[] keys = contentMatcherKey.group(1).split("<div class=\"OglasDataLeft\">");
+            for (String elt : keys) {
+                String key = elt.split("</div>")[0];
+                String value;
+                try {
+                    value = elt.split("<div class=\"OglasDataRight\">")[1].split("</div>")[0].split("\r")[0];
+                } catch (Exception e) {
+                    value = " ";
+                }
+                data.put(key, value);
+            }
         }
 
         Avtonet avtonet = new Avtonet(title,
