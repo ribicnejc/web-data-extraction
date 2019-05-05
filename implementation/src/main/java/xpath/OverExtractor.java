@@ -13,7 +13,7 @@ public class OverExtractor {
         //CleanerProperties props = cleaner.getProperties();
 
         //TagNode node = cleaner.clean(new File("input/overstock.com/jewelry01.html"), "Cp1252");
-        TagNode node = cleaner.clean(new File("input/overstock.com/jewelry01.html"), "Cp1252");
+        TagNode node = cleaner.clean(new File("input/overstock.com/jewelry02.html"), "Cp1252");
 
         // Find entries in table
         Object[] table = node.evaluateXPath("//table[@border='0'][@cellpadding='2']/tbody/tr[@bgcolor]");
