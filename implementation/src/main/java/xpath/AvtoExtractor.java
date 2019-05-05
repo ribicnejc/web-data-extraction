@@ -15,8 +15,8 @@ public class AvtoExtractor {
         HtmlCleaner cleaner = new HtmlCleaner();
         //CleanerProperties props = cleaner.getProperties();
 
-        TagNode node = cleaner.clean(new File("input/avto.net/Toyota GT 86.html"), "Cp1252");
-        //TagNode node = cleaner.clean(new File("input/avto.net/Mazda RX-7.html"), "Cp1252");
+        //TagNode node = cleaner.clean(new File("input/avto.net/Toyota GT 86.html"), "Cp1252");
+        TagNode node = cleaner.clean(new File("input/avto.net/Mazda RX-7.html"), "Cp1252");
         JSONObject json = new JSONObject();
 
         appendTitle(node, json);

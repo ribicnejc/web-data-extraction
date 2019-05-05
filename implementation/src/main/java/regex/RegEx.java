@@ -1,14 +1,11 @@
 package regex;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import objects.Avtonet;
-import objects.Overstock;
-import objects.Rtvslo;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
 import utils.HTMLHelper;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -48,20 +45,59 @@ public class RegEx {
         }
         String htmlFile = HTMLHelper.getHTMLString(path);
         Matcher titleMatcher = getMatcher("<h1>([a-zA-Z \\-&;0-9 <>\\/]+)<", htmlFile);
-        Matcher sellerMatcher = getMatcher("OglasMenuBox RoundedBottom ShadowBtm([\\n\\t\\r< a-z=\"0-9.\\/A-Z_\\-\\:\\;>!&Č]*)", htmlFile);
-        Matcher contentMatcher = getMatcher("<div class=\"ContentBox ContentBox640 Rounded ShadowBtm\">([ \\n<!\\-a-zA-Z>0-9=\":\\/ž\\r\\t&;,()č.š+\\*\\'\\_Č]+)<!-", htmlFile);
-        Matcher priceMathcer = getMatcher("OglasDataCenaTOP\"([a-zA-ZčČ \\n\\r\\t\" \\-:;= !0-9\\,\\.€$>]+)", htmlFile);
 
         titleMatcher.find();
-        contentMatcher.find();
-        contentMatcher.find();
-        sellerMatcher.find();
-        priceMathcer.find();
+        String title = titleMatcher.group(1).replaceAll("<small>", "").replaceAll("</small>", "").replaceAll("&nbsp;", " ");
+        System.out.println(title);
 
-        Avtonet avtonet = new Avtonet(titleMatcher.group(1),
-                priceMathcer.group(1),
-                sellerMatcher.group(1),
-                contentMatcher.group(1));
+        Matcher contacsMatcher = getMatcher("<div class=\"OglasMenuBox Bold OglasMenuBoxPhone\">([\\r\\t\\n])(.*)", htmlFile);
+        ArrayList<String> contacts = new ArrayList<>();
+        while(contacsMatcher.find()) {
+            String[] contacts2 = contacsMatcher.group(2).split("<div class=\"OglasMenuBoxLine\"></div>");
+            for (String elt : contacts2) {
+                String contact;
+                if (elt.substring(0, 1).equals("\n")) {
+                    if (elt.contains("ONLINE")) {
+                        contact = elt.split("\r\n")[0];
+                    } else
+                        contact = elt.split("<p class")[0];
+                } else {
+                    if (elt.contains("\n" +
+                            "\t\t\t\t") && !elt.contains("http"))
+                        contact = elt.split("\r\n\t\t\t\t")[1].split("<p class")[0];
+                    else continue;
+                }
+                contacts.add(contact);
+            }
+        }
+
+
+        Matcher priceMathcer = getMatcher("OglasDataCenaTOP\"([a-zA-ZčČ \\n\\r\\t\" \\-:;= !0-9\\,\\.€$>]+)", htmlFile);
+        priceMathcer.find();
+        String price = priceMathcer.group(1).replaceAll("style=\"font-size: 18px;\">", "");
+        Matcher contentMatcherKey = getMatcher("<div class=\"OglasDataLeft\">(.*)</div>", htmlFile);
+        Matcher contentMatcherValue = getMatcher("<div class=\"OglasDataRight\">(.*)</div>", htmlFile);
+
+        HashMap<String, String> data =  new HashMap<>();
+        while (contentMatcherKey.find() && contentMatcherValue.find()) {
+
+            String[] keys = contentMatcherKey.group(1).split("<div class=\"OglasDataLeft\">");
+            for (String elt : keys) {
+                String key = elt.split("</div>")[0];
+                String value;
+                try {
+                    value = elt.split("<div class=\"OglasDataRight\">")[1].split("</div>")[0].split("\r")[0];
+                } catch (Exception e) {
+                    value = " ";
+                }
+                data.put(key, value);
+            }
+        }
+
+        Avtonet avtonet = new Avtonet(title,
+                price,
+                contacts,
+                data);
 
         ObjectMapper mapper = new ObjectMapper();
         return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(avtonet);

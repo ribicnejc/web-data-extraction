@@ -1,6 +1,18 @@
 {
   "title" : "Mazda RX-7",
   "price" : "2.000 EUR",
-  "seller" : "<div class=\"OglasMenuBox Bold Center\">\r\n\t\t<h2 class=\"PaddingTopBtm\"></h2>\r\n        </div>\r\n        <!-------------------------------------- PHONE ------------------------------------->\r\n            <div class=\"OglasMenuBox Center\"><i class=\"fa fa-phone-square fa-3x GRAY60\"></i></div>\r\n            <div class=\"OglasMenuBox Center Bold\">\r\n            \t<p class=\"OglasMenuBoxKomentar\">TELEFON:</p>\r\n            </div>\r\n            <div class=\"OglasMenuBox Bold OglasMenuBoxPhone\">\r\n                            040641504\r\n             </div>\r\n\r\n<!-------------------------------------- ONLINE KONTAKT ------------------------------------->\r\n\t\t<div class=\"OglasMenuBoxLine\"></div> \r\n        <div class=\"OglasMenuBox\">\r\n            <div class=\"buttonV2 buttonDekorV3 buttonOrange\" style=\"width:272px; margin-left:14px;\">\r\n            <a href=\"https://www.avto.net/Ads/details.asp",
-  "content" : "\r\n                     <!--------------------------- PIA STROKOVNJAK SVETUJE  --------------------------->\r\n\r\n<!--------------------------- PIA 29 SEKUND-------------------------->\r\n\r\n<!--------------------------- END DATA ----------------------------->\r\n"
+  "contacts" : [ "\n                            040641504\r\n             " ],
+  "data" : {
+    "1.registracija:" : "\r\n            7&nbsp;/&nbsp;1986\r\n            &nbsp; \r\n        ",
+    "Letnik:": "1986",
+    "Starost:": "rabljeno",
+    "Prevoženi km:": "130000",
+    "Gorivo:": "bencinski motor",
+    "Motor:": ", 110 kW  (150 KM)",
+    "Menjalnik:": "ročni menjalnik (5 pr.)",
+    "Oblika:": "coupe, 3 vr.",
+    "Barva:": "\r\n   ",
+    "Notranjost:": "/",
+    "Kraj ogleda:": "1000 Ljubljana"
+  }
 }
