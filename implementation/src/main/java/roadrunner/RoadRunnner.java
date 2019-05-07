@@ -5,6 +5,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import roadrunner.AST.RElement;
+import roadrunner.AST.RNode;
 import utils.HTMLHelper;
 
 /**
@@ -34,7 +35,7 @@ public class RoadRunnner {
         body.printSelf(0);
     }
 
-    public static void searchRunner(RElement d1, RElement d2) {
+    public static void searchRunner(RNode d1, RNode d2) {
 
     }
 
@@ -43,7 +44,7 @@ public class RoadRunnner {
 
     fun search(d1, d2, rBuilder):
         if d1.tag() == d2.tag()
-            if d1.childs == d2.childs
+            if d1.children == d2.children
                 rBuilder.addNode(d1.tag)
             else rBuilder.addNode(findIter(d1, d2))
             if d1.text == d2.text
@@ -58,14 +59,6 @@ public class RoadRunnner {
         for sib1, sib2 in d1, d2:
             align(sib1, sib2)
             search(sib1, sib2)
-
-        rBuilder.node(d1.parent)
-        c1 = d1.firstChild()
-        c2 = d2.firstChild()
-        if c1.tag == c2.tag
-
-        if c1.isTextAttr() && c2.isTextAttr():
-            if c1.text != c2.text:
  */
 
 }
