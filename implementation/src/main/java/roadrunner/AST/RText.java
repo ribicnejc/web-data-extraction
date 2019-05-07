@@ -14,7 +14,7 @@ public class RText extends RNode {
         TextNode txt;
         txt = (TextNode) node;
 
-        text = txt.getWholeText();
+        text = txt.getWholeText().trim();
 
         parse(node);
     }

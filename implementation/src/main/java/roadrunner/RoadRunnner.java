@@ -3,6 +3,7 @@ package roadrunner;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import roadrunner.AST.RElement;
 import utils.HTMLHelper;
 
@@ -14,19 +15,19 @@ import utils.HTMLHelper;
  */
 public class RoadRunnner {
     public static void main(String[] args) throws Exception{
-        System.out.println(startRoadRunner(HTMLHelper.getHTMLString("input/overstock.com/jewelry01.html"),
-                HTMLHelper.getHTMLString("input/overstock.com/jewelry02.html")));
+        System.out.println(startRoadRunner(HTMLHelper.getHTMLString("input/rrsample/s1.html"),
+                HTMLHelper.getHTMLString("input/rrsample/s1.html")));
     }
 
     public static String startRoadRunner(String page1, String page2) {
         Document document1 = Jsoup.parse(page1);
         Document document2 = Jsoup.parse(page2);
 
-        Element neki = document1.body();
+        Element neki = document1.getElementsByTag("html").first();
         RElement body = new RElement(neki.tagName());
         body.parse(neki);
 
-        Element neki2 = document2.body();
+        Element neki2 = document2.getElementsByTag("html").first(); //document2.body();
         RElement body2 = new RElement(neki2.tagName());
         body2.parse(neki2);
 
