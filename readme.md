@@ -29,3 +29,9 @@ Parsed data are available in folder ```output roadRunner_sample_wrapper.txt```
 All parsed data are available in directory:
         
         /implementation/output/*.json
+        
+# Report
+Report is available here:
+        
+        /implementation/report/IEPS_seminar_2.pdf
+        
