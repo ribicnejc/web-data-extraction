@@ -15,11 +15,11 @@ import utils.HTMLHelper;
  */
 public class RoadRunnner {
     public static void main(String[] args) throws Exception{
-        System.out.println(startRoadRunner(HTMLHelper.getHTMLString("input/rrsample/s1.html"),
-                HTMLHelper.getHTMLString("input/rrsample/s1.html")));
+        startRoadRunner(HTMLHelper.getHTMLString("input/rrsample/s1.html"),
+                HTMLHelper.getHTMLString("input/rrsample/s1.html"));
     }
 
-    public static String startRoadRunner(String page1, String page2) {
+    public static void startRoadRunner(String page1, String page2) {
         Document document1 = Jsoup.parse(page1);
         Document document2 = Jsoup.parse(page2);
 
@@ -32,7 +32,10 @@ public class RoadRunnner {
         body2.parse(neki2);
 
         body.printSelf(0);
-        return "test";
+    }
+
+    public static void searchRunner(RElement d1, RElement d2) {
+
     }
 
     /*
