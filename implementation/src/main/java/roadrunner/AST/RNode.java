@@ -15,35 +15,20 @@ public abstract class RNode {
     abstract void parseDocument(Node node);
 
     public void parse(Node node) {
-        for(Element el: getElementChildrenFromDocument(node)) {
-            RElement rElement = new RElement(this, null);
-            rElement.parseDocument(el);
-            children.add(rElement);
-        }
 
-        for(TextNode txt : getTextChildrenFromDocument(node)) {
-            RText rText = new RText(this, null);
-            rText.parseDocument(txt);
-            children.add(rText);
-        }
-    }
-
-    ArrayList<Element> getElementChildrenFromDocument(Node node) {
         List<Node> allChildren = node.childNodes();
-        ArrayList<Element> elementChildren = new ArrayList<>();
         for(Node child : allChildren) {
-            if(child instanceof Element) elementChildren.add((Element) child);
+            if(child instanceof Element) {
+                RElement rElement = new RElement(this, null);
+                rElement.parseDocument(child);
+                children.add(rElement);
+            }
+            if(child instanceof TextNode) {
+                RText rText = new RText(this, null);
+                rText.parseDocument(child);
+                children.add(rText);
+            }
         }
-        return elementChildren;
-    }
-
-    ArrayList<TextNode> getTextChildrenFromDocument(Node node) {
-        List<Node> allChildren = node.childNodes();
-        ArrayList<TextNode> elementChildren = new ArrayList<>();
-        for(Node child : allChildren) {
-            if(child instanceof TextNode) elementChildren.add((TextNode) child);
-        }
-        return elementChildren;
     }
 
     // CONSTRUCTORS
