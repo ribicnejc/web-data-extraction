@@ -11,3 +11,21 @@ output console will have the data.
 #### Regex data
 Parsed data are available in folder ```output regex_xxxxx_sitex.json```
 
+## Xpath
+#### Run regex 
+In IntelliJ right click on ```Xpath``` and click ```run```. The 
+output console will have the data.
+#### Regex data
+Parsed data are available in folder ```output xpath_xxxxx_sitex.json```
+
+## Road-Runner
+#### Run regex 
+In IntelliJ right click on ```RoadRunner``` and click ```run```. The 
+output console will have the data.
+#### Regex data
+Parsed data are available in folder ```output roadRunner_sample_wrapper.txt```
+
+# Outputs
+All parsed data are available in directory:
+        
+        /implementation/output/*.json
