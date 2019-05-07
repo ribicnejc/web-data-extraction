@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public class RElement extends RNode {
 
     private String tag;
+    private String closingTag;
 
     void parseDocument(Node node) {
         Element element;
@@ -46,6 +47,10 @@ public class RElement extends RNode {
     // GETTERS AND SETTERS
     public String getTag() {
         return tag;
+    }
+
+    public String getCloseTag() {
+        return this.closingTag;
     }
 
     public void setTag(String tag) {

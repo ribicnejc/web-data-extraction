@@ -60,6 +60,21 @@ public abstract class RNode {
         return children;
     }
 
+    public boolean sameChildren() {
+        RNode tmp = null;
+        for (RNode node: children) {
+            if (tmp == null) tmp = node;
+            if (tmp instanceof RElement && node instanceof RElement) {
+                if (((RElement) tmp).getTag().equals(((RElement) node).getTag())) {
+                    tmp = node;
+                } else return false;
+            } else {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public void setChildren(ArrayList<RNode> children) {
         this.children = children;
     }
