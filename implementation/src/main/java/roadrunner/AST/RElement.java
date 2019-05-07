@@ -18,6 +18,13 @@ public class RElement extends RNode {
         parse(node);
     }
 
+    public void printSelf() {
+        System.out.println("<" + tag + ">");
+        for(RNode node : getChildren())
+            node.printSelf();
+        System.out.println("</" + tag + ">");
+    }
+
     // CONSTRUCTORS
     public RElement(String tag) {
         super();

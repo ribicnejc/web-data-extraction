@@ -19,6 +19,12 @@ public class RText extends RNode {
         parse(node);
     }
 
+    public void printSelf() {
+        System.out.println(text);
+        for(RNode node : getChildren())
+            node.printSelf();
+    }
+
     // CONSTRUCTORS
     public RText(String text) {
         super();

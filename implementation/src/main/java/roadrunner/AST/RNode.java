@@ -13,6 +13,7 @@ public abstract class RNode {
     private ArrayList<RNode> children;
 
     abstract void parseDocument(Node node);
+    abstract public void printSelf();
 
     public void parse(Node node) {
 

@@ -25,6 +25,7 @@ public class RoadRunnner {
         Element neki = document1.body();
         RElement body = new RElement(neki.tagName());
         body.parse(neki);
+        body.printSelf();
         return "test";
     }
 }
