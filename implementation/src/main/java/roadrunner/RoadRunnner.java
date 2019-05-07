@@ -2,6 +2,8 @@ package roadrunner;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import roadrunner.AST.RElement;
 import utils.HTMLHelper;
 
 /**
@@ -19,6 +21,10 @@ public class RoadRunnner {
     public static String startRoadRunner(String page1, String page2) {
         Document document1 = Jsoup.parse(page1);
         Document document2 = Jsoup.parse(page2);
+
+        Element neki = document1.body();
+        RElement body = new RElement(neki.tagName());
+        body.parse(neki);
         return "test";
     }
 }
