@@ -30,7 +30,7 @@ public class RoadRunnner {
         RElement body2 = new RElement(neki2.tagName());
         body2.parse(neki2);
 
-        body.printSelf();
+        body.printSelf(0);
         return "test";
     }
 }

@@ -13,7 +13,7 @@ public abstract class RNode {
     private ArrayList<RNode> children;
 
     abstract void parseDocument(Node node);
-    abstract public void printSelf();
+    abstract public void printSelf(int depth);
 
     public void parse(Node node) {
 
@@ -27,7 +27,8 @@ public abstract class RNode {
             if(child instanceof TextNode) {
                 RText rText = new RText(this, null);
                 rText.parseDocument(child);
-                children.add(rText);
+                if(!rText.getText().trim().equals(""))
+                    children.add(rText);
             }
         }
     }

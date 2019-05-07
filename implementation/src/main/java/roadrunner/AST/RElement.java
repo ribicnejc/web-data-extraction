@@ -18,10 +18,12 @@ public class RElement extends RNode {
         parse(node);
     }
 
-    public void printSelf() {
+    public void printSelf(int depth) {
+        for(int i = 0; i < depth; i++) System.out.print("  ");
         System.out.println("<" + tag + ">");
         for(RNode node : getChildren())
-            node.printSelf();
+            node.printSelf(depth+1);
+        for(int i = 0; i < depth; i++) System.out.print("  ");
         System.out.println("</" + tag + ">");
     }
 
