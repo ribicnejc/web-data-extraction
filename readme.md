@@ -33,5 +33,5 @@ All parsed data are available in directory:
 # Report
 Report is available here:
         
-        /report/IEPS_seminar_2.pdf
+        /report.pdf
         
