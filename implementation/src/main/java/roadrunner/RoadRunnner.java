@@ -15,7 +15,7 @@ import utils.HTMLHelper;
 public class RoadRunnner {
     public static void main(String[] args) throws Exception{
         System.out.println(startRoadRunner(HTMLHelper.getHTMLString("input/overstock.com/jewelry01.html"),
-                HTMLHelper.getHTMLString("input/overstock.com/jewelry01.html")));
+                HTMLHelper.getHTMLString("input/overstock.com/jewelry02.html")));
     }
 
     public static String startRoadRunner(String page1, String page2) {
@@ -25,6 +25,11 @@ public class RoadRunnner {
         Element neki = document1.body();
         RElement body = new RElement(neki.tagName());
         body.parse(neki);
+
+        Element neki2 = document2.body();
+        RElement body2 = new RElement(neki2.tagName());
+        body2.parse(neki2);
+
         body.printSelf();
         return "test";
     }
