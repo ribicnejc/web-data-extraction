@@ -33,4 +33,35 @@ public class RoadRunnner {
         body.printSelf(0);
         return "test";
     }
+
+    /*
+    Tree rBuilder;
+
+    fun search(d1, d2, rBuilder):
+        if d1.tag() == d2.tag()
+            if d1.childs == d2.childs
+                rBuilder.addNode(d1.tag)
+            else rBuilder.addNode(findIter(d1, d2))
+            if d1.text == d2.text
+                rBuilder.addNode(d1.text)
+            else rBuilder.addNode(findText(d1, d2))
+         else
+            rBuilder.addNode(findOptional(d1, d2))
+
+        for c1, c2 in d1, d2:
+            align(c1, c2)
+            search(c1, c2)
+        for sib1, sib2 in d1, d2:
+            align(sib1, sib2)
+            search(sib1, sib2)
+
+        rBuilder.node(d1.parent)
+        c1 = d1.firstChild()
+        c2 = d2.firstChild()
+        if c1.tag == c2.tag
+
+        if c1.isTextAttr() && c2.isTextAttr():
+            if c1.text != c2.text:
+ */
+
 }
